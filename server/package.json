@@ -1,0 +1,32 @@
+{
+  "name": "task-manager-api",
+  "version": "1.0.0",
+  "description": "Nodejs backend for Task Manager Momo",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JaeBea/task-manager-momo.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "Beatrice Williams",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JaeBea/task-manager-momo/issues"
+  },
+  "homepage": "https://github.com/JaeBea/task-manager-momo#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.5.0",
+    "@typescript-eslint/parser": "^5.5.0",
+    "eslint": "^8.3.0",
+    "eslint-config-google": "^0.14.0"
+  }
+}
