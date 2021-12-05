@@ -7,8 +7,13 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
   backend:
+  server-api:
     container_name: nodejs
     build: ./server
-  frontend:
-    container_name: reactjs
+    ports:
+      - "3100:3100"
+  client-ui:
+    container_name: nextjs
     build: ./client
+    ports:
+      - "3000:3000"

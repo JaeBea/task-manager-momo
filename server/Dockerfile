@@ -8,6 +8,8 @@ WORKDIR /app
 RUN npm install
 COPY . /app/
 
+ENV NODE_ENV production
+
 USER node
 
 CMD ["node", "app.js"]
