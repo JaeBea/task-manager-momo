@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run:
           name: Unit Tests
-          command: echo "Jest comming soon!"
+          command: npm test
   test-client-ui:
     docker:
       - image: jaebea/task-manager-momo:client-ui
@@ -18,7 +18,7 @@ jobs:
       - checkout
       - run:
           name: Unit Tests
-          command: echo "Jest comming soon!"
+          command: npm test
 
 
 # Invoke jobs via workflows
