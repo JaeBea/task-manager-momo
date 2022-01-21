@@ -24,6 +24,7 @@ services:
   server-api:
     container_name: nodejs
     build: ./server
+    image: jaebea/task-manager-momo:server-api
     ports:
       - "3100:3100"
     environment: 
@@ -31,5 +32,6 @@ services:
   client-ui:
     container_name: nextjs
     build: ./client
+    image: jaebea/task-manager-momo:client-ui
     ports:
       - "3000:3000"
