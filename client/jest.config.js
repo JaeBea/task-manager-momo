@@ -10,6 +10,7 @@ const customJestConfig = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
+  testPathIgnorePatterns: ['<rootDir>/cypress/']
 }
 
 module.exports = createJestConfig(customJestConfig)
