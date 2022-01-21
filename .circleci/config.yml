@@ -26,7 +26,10 @@ jobs:
       - build
       - run:
           name: Unit Tests
-          command: npm test
+          command: |
+            cd client
+            npm i
+            npm test
 
 
 # Invoke jobs via workflows
