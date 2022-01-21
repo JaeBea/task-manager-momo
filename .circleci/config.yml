@@ -1,21 +1,29 @@
 # This config is equivalent to both the '.circleci/extended/orb-free.yml' and the base '.circleci/config.yml'
 version: 2.1
+commands:
+  build:
+    steps:
+      - checkout
+executors:
+  circleci-docker:
+    docker:
+      - image: cimg/node:16.13
+    working_directory: ~/project
 jobs:
   test-server-api:
-    docker:
-      - image: jaebea/task-manager-momo:server-api
-    working_directory: ~/server
+    executor: circleci-docker
     steps:
-      - checkout
+      - build
       - run:
           name: Unit Tests
-          command: npm test
+          command: |
+            cd server
+            npm i
+            npm test
   test-client-ui:
-    docker:
-      - image: jaebea/task-manager-momo:client-ui
-    working_directory: ~/client
+    executor: circleci-docker
     steps:
-      - checkout
+      - build
       - run:
           name: Unit Tests
           command: npm test
