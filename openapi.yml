@@ -1,0 +1,147 @@
+openapi: 3.0.3
+info:
+  title: Task Manager Momo API
+  version: 0.1.0
+paths:
+  /users:
+    get:
+      description: Retrieve specific user.
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          $ref: "#/components/responses/userSuccess"
+    post:
+      description: Create new user.
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - type
+                - attributes
+              properties:
+                type:
+                  $ref: "#/components/schemas/type"
+                attributes:
+                  type: object
+                  properties:
+                    first_name:
+                      type: string
+                    last_name:
+                      type: string
+                    username:
+                      type: string
+                    email:
+                      type: string
+      responses:
+        "200":
+          $ref: "#/components/responses/userSuccess"
+        "422":
+          $ref: "#/components/responses/error"
+    patch:
+      description: Update esisting user.
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - type
+                - id
+              properties:
+                type:
+                  $ref: "#/components/schemas/type"
+                id:
+                  $ref: "#/components/schemas/id"
+                attributes:
+                  type: object
+                  properties:
+                    first_name:
+                      type: string
+                    last_name:
+                      type: string
+                    username:
+                      type: string
+                    email:
+                      type: string
+      responses:
+        "200":
+          $ref: "#/components/responses/userSuccess"
+        "422":
+          $ref: "#/components/responses/error"
+components:  
+    schemas:
+      type:
+        type: string
+        description: "The [type](https://jsonapi.org/format/#document-resource-object-identification) member is used to describe resource objects that share common attributes and relationships."
+      id:
+        type: string
+        description: "Each resource object\u2019s type and id pair MUST [identify](https://jsonapi.org/format#document-resource-object-identification) a single, unique resource. The id will always be a UUID"
+      error:
+        type: object
+        required:
+          - status
+          - title
+          - detail
+        properties:
+          status:
+            type: string
+          title:
+            type: string
+          detail:
+            type: string
+      user:
+        type: object
+        required:
+          - type
+          - id
+        properties:
+          type:
+            $ref: "#/components/schemas/type"
+          id:
+            $ref: "#/components/schemas/id"
+          attributes:
+            type: object
+            properties:
+              id:
+                type: integer
+              first_name:
+                type: string
+              last_name:
+                type: string
+              username:
+                type: string
+    responses:
+      userSuccess:
+        description: Success
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: array
+                  maxItems: 1
+                  items:
+                    $ref: "#/components/schemas/user"
+      error:
+        description: Error - Uprocessable
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - errors
+              properties:
+                errors:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/error"
