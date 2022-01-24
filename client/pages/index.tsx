@@ -3,9 +3,21 @@ import Image from 'next/image'
 import { useState } from 'react'
 import styles from '../styles/Home.module.css'
 
+import TextInput from '../components/TextInput/TextInput'
+
 export default function Home() {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
+
+  const fieldUsername = {
+    id: 'username',
+    label: 'Username'
+  }
+
+  const fieldPassword = {
+    id: 'password',
+    label: 'Password'
+  }
   
   return (
     <div className={styles.container}>
@@ -17,6 +29,9 @@ export default function Home() {
 
       <main className={styles.main}>
         <form>
+          <TextInput {...fieldUsername} />
+          <TextInput {...fieldPassword} />
+          
           <label htmlFor="username">Username</label>
           <input type="text" value={username} onChange={(e) => (e.target.value)} />
           <label htmlFor="password">Password</label>

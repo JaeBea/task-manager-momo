@@ -1,0 +1,17 @@
+.wrapper {
+  padding: 0.5rem;
+  display: flex;
+  flex-flow: column;
+}
+
+.label {
+  color: #333;
+  flex: 100% 1 0;
+}
+.text-input {
+  padding: 0.25rem;
+  margin: 0.25rem 0;
+  font-size: 1.1rem;
+  flex: 100% 1 0;
+  border-radius: 5px;
+}
