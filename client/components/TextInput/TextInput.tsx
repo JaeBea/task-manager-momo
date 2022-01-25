@@ -1,19 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styles from './TextInput.module.scss';
 
 type TextInputProps = {
-  id: string;
+  name: string;
+  key: number;
   label: string;
   type?: 'text' | 'email' | 'phone' | 'password';
-  value?: string;
   isRequired?: boolean
 }
 
-const TextInput = ({id, type='text', value, label, isRequired=false}: TextInputProps) => {
-  return <div className={styles.wrapper}>
-    <label htmlFor={id} className={styles.label}>{label}</label>
-    <input className={styles['text-input']} name={id} type={type} value={value} required={isRequired} />
+const TextInput = ({ name, key, type = 'text', label, isRequired = false }: TextInputProps) => {
+  const [inputField, setInputField] = useState();
+
+  return <div className={styles.wrapper} key={key}>
+    <label htmlFor={name} className={styles.label}>{label}</label>
+    <input
+      className={styles['text-input']}
+      name={name}
+      title={label}
+      type={type}
+      required={isRequired}
+      onChange={(e) => (e.target.value)}
+    />
   </div>;
 }
 

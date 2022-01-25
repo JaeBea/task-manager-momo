@@ -1,24 +1,30 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { useState } from 'react'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import Image from 'next/image';
+import styles from '../styles/Home.module.css';
 
-import TextInput from '../components/TextInput/TextInput'
+import TextInput from '../components/TextInput/TextInput';
+
+const getLoginfields = () => {
+  const fieldProps = [
+    {
+      name: 'username',
+      label: 'Username'
+    },
+    {
+      name: 'password',
+      label: 'Password'
+    }
+  ];
+
+  let fields = fieldProps.map((fieldProps, i) => {
+    return <TextInput key={i} {...fieldProps} />;
+  });
+
+  return fields;
+}
 
 export default function Home() {
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
 
-  const fieldUsername = {
-    id: 'username',
-    label: 'Username'
-  }
-
-  const fieldPassword = {
-    id: 'password',
-    label: 'Password'
-  }
-  
   return (
     <div className={styles.container}>
       <Head>
@@ -29,13 +35,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <form>
-          <TextInput {...fieldUsername} />
-          <TextInput {...fieldPassword} />
-          
-          <label htmlFor="username">Username</label>
-          <input type="text" value={username} onChange={(e) => (e.target.value)} />
-          <label htmlFor="password">Password</label>
-          <input type="text" value={password} onChange={(e) => (e.target.value)} />
+          {getLoginfields()}
         </form>
       </main>
 
