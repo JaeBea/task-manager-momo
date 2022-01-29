@@ -8,10 +8,11 @@
   color: #333;
   flex: 100% 1 0;
 }
-.text-input {
+.textField {
   padding: 0.25rem;
   margin: 0.25rem 0;
   font-size: 1.1rem;
   flex: 100% 1 0;
   border-radius: 5px;
+  border: solid thin #ccc;
 }

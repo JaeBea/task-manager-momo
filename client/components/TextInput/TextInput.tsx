@@ -2,28 +2,26 @@ import React, { useState } from 'react';
 
 import styles from './TextInput.module.scss';
 
-type TextInputProps = {
+export type TextInputProps = {
   name: string;
-  key: number;
   label: string;
   type?: 'text' | 'email' | 'phone' | 'password';
   isRequired?: boolean
 }
 
-const TextInput = ({ name, key, type = 'text', label, isRequired = false }: TextInputProps) => {
-  const [inputField, setInputField] = useState();
+export default function TextInput ({ name, type='text', label, isRequired=true }: TextInputProps) {
+  const [data, setData] = useState();
 
-  return <div className={styles.wrapper} key={key}>
+  return <div className={styles.wrapper}>
     <label htmlFor={name} className={styles.label}>{label}</label>
     <input
-      className={styles['text-input']}
+      className={styles.textField}
       name={name}
       title={label}
       type={type}
       required={isRequired}
+      value={data}
       onChange={(e) => (e.target.value)}
     />
   </div>;
 }
-
-export default TextInput;

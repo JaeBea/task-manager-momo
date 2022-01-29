@@ -1,0 +1,16 @@
+.card {
+  padding: 1.5rem;
+  flex: fit-content;
+  max-width: 30rem;
+  display: flex;
+  flex-flow: column;
+}
+
+.button {
+  background: darkcyan;
+  color: white;
+  padding: 0.5rem 1rem;
+  margin: 0.25rem 0.5rem;
+  border: none;
+  border-radius: 5px;
+}
