@@ -1,44 +1,8 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.scss';
 
-import Form from '../components/Form';
-
-const loginFields =  [
-    {
-      name: 'username',
-      label: 'Username'
-    },
-    {
-      name: 'password',
-      label: 'Password',
-      type: 'password'
-    }
-  ];
-
-const newAcctFields =  [
-    {
-      name: 'first_name',
-      label: 'First Name'
-    },
-    {
-      name: 'last_name',
-      label: 'Last Name'
-    },
-    {
-      name: 'email',
-      label: 'Email',
-      type: 'email'
-    },
-    {
-      name: 'username',
-      label: 'Username'
-    },
-    {
-      //name: 'password',
-      label: 'Password',
-      type: 'password'
-    }
-  ];
+import SignIn from '../components/Form/signin';
+import CreateAccount from '../components/Form/createAccount';
 
 export default function Home() {
 
@@ -52,9 +16,9 @@ export default function Home() {
 
       <main className={styles.main}>
         <div className={styles.grid}>
-          <Form title='Sign In' fields={loginFields} destination='/api/auth/login' />
+          <SignIn />
           <div className={styles.vl}></div>
-          <Form title='Create Account' fields={newAcctFields} destination='/api/user/create' />
+          <CreateAccount />
         </div>
       </main>
 
