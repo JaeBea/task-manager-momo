@@ -1,11 +1,16 @@
 import express, {json, urlencoded} from 'express';
+import cors from 'cors';
 
 const app = express();
 const port = process.env.PORT || 3100;
 const frontend = 'http://localhost:3000';
+const corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200
+};
 
 app.use(urlencoded({extended: true}));
-
+app.use(cors(corsOptions));
 app.use(json());
 app.use(json({type: 'application/vnd.api+json'}));
 
@@ -31,7 +36,11 @@ app.post('/api/user', (req, res)=>{
 
 app.post('/api/auth/login', (req, res)=>{
   if (req.body.username && req.body.password) {
-    res.redirect(`${frontend}/dashboard`);
+    // TODO: Generate custom jwt token.
+    const successfulRes = {
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+    };
+    res.status(200).json(successfulRes);
   } else {
     const errorMessage = {
       errors: [
