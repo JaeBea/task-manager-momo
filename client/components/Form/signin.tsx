@@ -1,25 +1,13 @@
+import { useRouter } from 'next/router';
 import React, {useState} from 'react';
 import { TextInputProps } from '../TextInput';
 
 import styles from './Form.module.scss';
 import { generateFields } from './utilities';
-
-const destination = 'http://localhost:3100/api/auth/login';
-
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  console.log(e)
-  let res = await fetch(destination, {
-    method: 'POST',
-    body: JSON.stringify({
-      username: e.username,
-      password: e.password
-
-    })
-  })
-}
+import { checkAuth } from '../../services/user';
 
 export default function SignIn () {
+  const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -38,6 +26,27 @@ export default function SignIn () {
       setState: setPassword
     }
   ];
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const credentials = {
+      username: username,
+      password: password
+    };
+
+    checkAuth(credentials).then((res) => {
+      switch (res.status) {
+        case 401:
+          alert('Try again! It is not that hard.');
+          break;
+        case 200:
+          router.push('/dashboard');
+          break;
+        default:
+          alert('Something went wrong');
+      }
+    });
+  }
 
   return (
   <form className={styles.card} onSubmit={handleSubmit}>

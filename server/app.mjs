@@ -31,7 +31,7 @@ app.post('/api/user', (req, res)=>{
       }
     }
   };
-  res.json(mockUser);
+  res.status(201).json(mockUser);
 });
 
 app.post('/api/auth/login', (req, res)=>{

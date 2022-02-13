@@ -1,29 +1,13 @@
 import React, { useState } from 'react';
 import { TextInputProps } from '../TextInput';
+import { useRouter } from 'next/router';
 
 import styles from './Form.module.scss';
 import { generateFields } from './utilities';
-
-const destination = 'http://localhost:3100/api/user/create';
-
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  console.log(e)
-  let res = await fetch(destination, {
-    method: 'POST',
-    body: JSON.stringify({
-      type: 'user',
-        attributes: {
-          first_name: e.firstName,
-          last_name: e.lastName,
-          username: e.username,
-          email: e.email
-        }
-    })
-  })
-}
+import { createUser } from '../../services/user';
 
 export default function CreateAccount () {
+  const router = useRouter();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -64,6 +48,23 @@ export default function CreateAccount () {
       setState: setpassword
     }
   ];
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    const userDetails = {
+      first_name: firstName,
+      last_name: lastName,
+      username: username,
+      email: email
+    }
+    
+    createUser(userDetails).then((res) => {
+      if (res.status === 201) {
+        router.push('/dashboard');
+      }
+    });
+  }
 
   return (
   <form className={styles.card} onSubmit={handleSubmit}>
